@@ -20,3 +20,5 @@ renv::deactivate()
 ```
 
 Finally, open the `.Rproj` file in `/home/rstudio/lassa_sentinel` in Rstudio. You should now be able to run `/scripts/03_forecast_monthly/04_generate_forecast.R`, which installs `INLA` and other dependencies at the top of the file (need to re-do this each time the Docker image restarts, I think). 
+
+Image may need to be updated once again if new versions of `INLA` start causing problems. 
