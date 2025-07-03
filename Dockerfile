@@ -1,5 +1,5 @@
 # Use the base image you were using before
-FROM rocker/rstudio:4.4.1 AS base
+FROM rocker/rstudio:4.5.1 AS base
 
 # RUN 'echo "$SSH_PRIVATE_KEY"'
 
@@ -16,7 +16,8 @@ RUN apt-get update && apt-get upgrade -y && \
     cmake libsodium-dev libglpk-dev libssl-dev libudunits2-dev libgdal-dev \
     git openssh-client build-essential zlib1g-dev libffi-dev libbz2-dev \
     libreadline-dev libsqlite3-dev wget llvm libncurses5-dev libncursesw5-dev \
-    xz-utils tk-dev libgdbm-dev libnss3-dev liblzma-dev python3-pip python3.10-venv && \
+    xz-utils tk-dev libgdbm-dev libnss3-dev liblzma-dev python3-pip python3.12-venv \
+    gdal-bin libgdal-dev && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
@@ -46,7 +47,7 @@ RUN R -e "install.packages('renv', repos='https://cloud.r-project.org/')"
 WORKDIR /home/rstudio/project
 COPY renv.lock renv.lock
 ENV RENV_PATHS_LIBRARY=renv/library
-RUN R -e "renv::restore()"
+# RUN R -e "renv::restore()"
 
 
 # Install INLA from source for ARM architecture support
